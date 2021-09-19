@@ -17,7 +17,12 @@ public class Age {
         if (PlayerSettings.getConfig(3144) == 1073741824 || PlayerSettings.getConfig(3144) == -1073741824) { // if visible || the negative value is for when you have it set to not ask you & its visible
             WidgetChild age = Widgets.getWidget(712).getChild(2).getChild(100); // i forget how widgets work
             if (age.getText() != null) {
-                playerAge = age.getText();
+                String preProcessed = age.getText();
+                playerAge = preProcessed.replace("<col=0dc10d>", "")
+                                        .replace("</col>","")
+                                        .replace("Time Played:","");
+
+                // Time Played: <col=0dc10d>1 day, 11 hours</col>
             }
             return playerAge;
         }
